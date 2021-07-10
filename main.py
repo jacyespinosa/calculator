@@ -14,7 +14,6 @@ operation = ""
 operations = ["+", "-", "*", "/"]
 total = 0
 
-
 '''
 When one of the operations is clicked, clear() function will be called and would clear the entry screen.
 '''
@@ -147,6 +146,7 @@ def dot():
     num.append(".")
     entry.insert(string=".", index=END)
 
+
 '''
 When a user clicks on one of the 'operation symbols', the operator functions will check if there are two operands in
 between the operation symbol (e.g. 5+5), if so, then calculation() function will be automatically called to 
@@ -198,10 +198,61 @@ def divide():
         num.append("/")
 
 
+'''
+When the user clicks the '=' button, the calculation() function will be called.
+The calculation function will access the global num variable, then it would split the num variable until an operator is 
+found and update the num into a list instead of a string from (e.g. "5+5" to [5,5]). Then the appropriate operator will
+be compared and then it will calculate the total. It will then display the total on the entry screen.
+'''
 def calculation():
-    pass
+    global num
+    global num1
+    global num2
+    global operation
+    global total
+    clear()
+    entry.insert(string=f"{total}", index=END)
 
+    for i, item in enumerate(num):
+        if item in operations:
+            operation = item
+            num = "".join(num)
+            num = num.split(f"{operation}")
 
+        num1 = num[0]
+        num2 = num[1]
+
+    num1 = float(num1)
+    num2 = float(num2)
+
+    if operation == '+':
+        total = int(num1 + num2)
+        clear()
+        entry.insert(string=f"{total}", index=END)
+
+    if operation == '-':
+        total = int(num1 - num2)
+        clear()
+        entry.insert(string=f"{total}", index=END)
+
+    if operation == '*':
+        total = int(num1 * num2)
+        clear()
+        entry.insert(string=f"{total}", index=END)
+
+    if operation == '/':
+        total = total = float(round((num1 / num2), 2))
+        clear()
+        entry.insert(string=f"{total}", index=END)
+
+    num = [f'{total}']
+    num1 = None
+    num2 = None
+'''
+The current total will be saved in the num while num1 and num2 values will be change back to None. So the current total
+which is now the new num variable will be used as one of the operands.
+'''
+#----------------------------------------------------------------------------------------------------------------------#
 #SETTING UP THE GUI
 
 #Input/Output Entry
