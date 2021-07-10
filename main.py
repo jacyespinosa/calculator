@@ -147,6 +147,60 @@ def dot():
     num.append(".")
     entry.insert(string=".", index=END)
 
+'''
+When a user clicks on one of the 'operation symbols', the operator functions will check if there are two operands in
+between the operation symbol (e.g. 5+5), if so, then calculation() function will be automatically called to 
+calculate the solution without clicking the '=' button and would display the answer on the entry screen.
+Else, it will append the operation symbol to the global num variable and will continuously check whether an operation is 
+in between two operands whenever one of the operation symbols is clicked by the user and then call the calculate().
+'''
+#OPERATOR FUNCTIONS
+def add():
+    global num
+    clear()
+    for item in num:
+        if item in operations:
+            calculation()
+    else:
+        num.append("+")
+
+
+def subtract():
+    global num
+    global operation
+    clear()
+    for item in num:
+        if item in operations:
+            calculation()
+    else:
+        num.append("-")
+
+
+def multiply():
+    global num
+    global operation
+    clear()
+    for item in num:
+        if item in operations:
+            calculation()
+    else:
+        num.append("*")
+
+
+def divide():
+    global num
+    global operation
+    clear()
+    for item in num:
+        if item in operations:
+            calculation()
+    else:
+        num.append("/")
+
+
+def calculation():
+    pass
+
 
 #SETTING UP THE GUI
 
@@ -194,19 +248,19 @@ dot_button.grid(column=1, row=6)
 clear_button = Button(text="C", width=5, height=3, highlightthickness=0, fg='black', command=click_clear)
 clear_button.grid(column=2, row=6)
 
-plus_button = Button(text="+", width=5, height=3, highlightthickness=0, fg='black', command="add")
+plus_button = Button(text="+", width=5, height=3, highlightthickness=0, fg='black', command=add)
 plus_button.grid(column=3, row=3)
 
-minus_button = Button(text="-", width=5, height=3, highlightthickness=0, fg='black', command="subtract")
+minus_button = Button(text="-", width=5, height=3, highlightthickness=0, fg='black', command=subtract)
 minus_button.grid(column=3, row=4)
 
-multiply_button = Button(text="x", width=5, height=3, highlightthickness=0, fg='black', command="multiply")
+multiply_button = Button(text="x", width=5, height=3, highlightthickness=0, fg='black', command=multiply)
 multiply_button.grid(column=3, row=5)
 
-divide_button = Button(text="/", width=5, height=3, highlightthickness=0, fg='black', command="divide")
+divide_button = Button(text="/", width=5, height=3, highlightthickness=0, fg='black', command=divide)
 divide_button.grid(column=3, row=6)
 
-equal_button = Button(text="=", width=21, height=3, highlightthickness=0, fg='black', command="")
+equal_button = Button(text="=", width=21, height=3, highlightthickness=0, fg='black', command=calculation)
 equal_button.grid(column=0, row=7, columnspan=4)
 
 
